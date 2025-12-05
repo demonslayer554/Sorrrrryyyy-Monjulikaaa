@@ -579,88 +579,14 @@
     </script>
 
 
-    <!-- ======================= INTRO OVERLAY START ======================= -->
-
-<style>
-  /* Overlay Background */
-  .intro-overlay {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
-    backdrop-filter: blur(22px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 999999;
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(1.02);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .intro-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-  }
-
-  /* Overlay Card */
-  .intro-card {
-    max-width: 480px;
-    width: 100%;
-    padding: 26px 22px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 65, 0.98));
-    border: 1px solid rgba(248, 113, 181, 0.4);
-    box-shadow: 0 24px 90px rgba(0,0,0,0.95);
-    position: relative;
-    overflow: hidden;
-    animation: fadeInUp 0.7s ease-out forwards;
-  }
-
-  .intro-card::before {
-    content: "";
-    position: absolute;
-    inset: -40%;
-    background: radial-gradient(circle, rgba(236,72,153,0.25), transparent 60%);
-  }
-
-  @keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(25px) scale(0.97);}
-    to {opacity: 1; transform: translateY(0) scale(1);}
-  }
-
-  .intro-heading {
-    font-size: 22px;
-    line-height: 1.5;
-    color: #fff;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .intro-heading span {
-    background: linear-gradient(120deg, #f472b6, #db2777);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
-
-  .intro-subtext {
-    color: #9ca3af;
-    font-size: 13px;
-    text-align: center;
-    line-height: 1.6;
-    margin-top: 10px;
-  }
-
-<!-- ======================= INTRO OVERLAY (LOCKED) ======================= -->
+    <!-- ======================= INTRO OVERLAY (LOCKED + FULL TEXT) ======================= -->
 
 <style>
   .intro-overlay {
     position: fixed;
     inset: 0;
     background: radial-gradient(circle at top, rgba(15,23,42,0.98), rgba(2,6,23,0.96));
-    backdrop-filter: blur(22px);
+    backdrop-filter: blur(25px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -668,7 +594,7 @@
     z-index: 999999;
   }
 
-  /* Always keep the background blurred */
+  /* Blur the entire website behind it */
   body.locked *:not(.intro-overlay):not(.intro-overlay *) {
     filter: blur(10px);
     user-select: none;
@@ -676,34 +602,44 @@
   }
 
   .intro-card {
-    max-width: 480px;
+    max-width: 500px;
     width: 100%;
-    padding: 28px 22px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 65, 0.98));
-    border: 1px solid rgba(248, 113, 181, 0.4);
+    padding: 30px 26px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(15,23,42,0.97), rgba(24,35,65,0.98));
+    border: 1px solid rgba(248, 113, 181, 0.45);
     box-shadow: 0 24px 90px rgba(0,0,0,0.95);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.25), transparent 60%);
+    filter: blur(8px);
   }
 
   .intro-heading {
-    font-size: 22px;
-    color: #fff;
-    line-height: 1.5;
+    font-size: 24px;
     font-weight: 600;
+    line-height: 1.5;
+    color: #fff;
   }
 
-  .intro-heading span {
+  .intro-heading span.highlight {
     background: linear-gradient(120deg, #f472b6, #db2777);
     -webkit-background-clip: text;
     color: transparent;
   }
 
   .intro-subtext {
-    color: #9ca3af;
-    margin-top: 12px;
+    margin-top: 14px;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: #d1d5db;
   }
 </style>
 
@@ -712,22 +648,24 @@
     <h2 class="intro-heading">
       This site is being built by<br>
       <strong>Soheb</strong> for his special one,<br>
-      his <span>Princess 🤗</span><br>
+      his <span class="highlight">Princess 🤗</span><br>
       with lots of love ❤️
     </h2>
 
     <p class="intro-subtext">
-      The rest of the website is locked until the surprise is fully ready.  
-      Please check back soon 💖
+      Until the surprise is fully ready, the rest of the website will stay hidden.  
+      Come back soon, my princess. 💖  
+      Everything here is being crafted carefully — just for you.
     </p>
   </div>
 </div>
 
 <script>
-  // Site always locked — blur always applied
+  // Keep website permanently locked until you remove overlay from code
   document.body.classList.add("locked");
 </script>
 
-<!-- ======================= INTRO OVERLAY END ======================= -->>
+<!-- ======================= INTRO OVERLAY END ======================= -->
+
 </body>
 </html>
