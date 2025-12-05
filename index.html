@@ -578,5 +578,178 @@
         }
     </script>
 
+
+    <!-- ======================= INTRO OVERLAY START ======================= -->
+
+<style>
+  /* Overlay Background */
+  .intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.96));
+    backdrop-filter: blur(22px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.02);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .intro-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+
+  /* Overlay Card */
+  .intro-card {
+    max-width: 480px;
+    width: 100%;
+    padding: 26px 22px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 65, 0.98));
+    border: 1px solid rgba(248, 113, 181, 0.4);
+    box-shadow: 0 24px 90px rgba(0,0,0,0.95);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.7s ease-out forwards;
+  }
+
+  .intro-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(236,72,153,0.25), transparent 60%);
+  }
+
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(25px) scale(0.97);}
+    to {opacity: 1; transform: translateY(0) scale(1);}
+  }
+
+  .intro-heading {
+    font-size: 22px;
+    line-height: 1.5;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .intro-heading span {
+    background: linear-gradient(120deg, #f472b6, #db2777);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .intro-subtext {
+    color: #9ca3af;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+
+  /* Buttons */
+  .intro-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .intro-btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+  }
+
+  .intro-btn-primary {
+    background: linear-gradient(120deg, #f472b6, #db2777);
+    color: #0b1120;
+    font-weight: 600;
+    box-shadow: 0 12px 40px rgba(236,72,153,0.6);
+  }
+
+  .intro-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 55px rgba(236,72,153,0.75);
+  }
+
+  .intro-btn-ghost {
+    background: rgba(15,23,42,0.96);
+    border: 1px solid rgba(148,163,184,0.6);
+    color: #fecaca;
+  }
+
+  .intro-btn-ghost:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Blur effect applied to your whole website */
+  body.overlay-blur *:not(.intro-overlay):not(.intro-overlay *) {
+    filter: blur(8px);
+    user-select: none;
+    pointer-events: none;
+  }
+</style>
+
+
+<!-- Overlay HTML -->
+<div class="intro-overlay active" id="introOverlay">
+  <div class="intro-card">
+    <h2 class="intro-heading">
+      This site is being built by<br>
+      <strong>Soheb</strong> for his special one,<br>
+      his <span>Princess 🤗</span><br>
+      with lots of love ❤️
+    </h2>
+
+    <p class="intro-subtext">
+      Every detail here is made just for you — with care, patience and a heart full of love ✨
+    </p>
+
+    <div class="intro-buttons">
+      <button class="intro-btn intro-btn-ghost" id="closeLater">Maybe later ⏳</button>
+      <button class="intro-btn intro-btn-primary" id="enterNow">Enter ✨</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- JS -->
+<script>
+  const overlay = document.getElementById("introOverlay");
+  const enterBtn = document.getElementById("enterNow");
+  const laterBtn = document.getElementById("closeLater");
+
+  // Keep website blurred initially
+  document.body.classList.add("overlay-blur");
+
+  // Function to close overlay
+  const closeOverlay = () => {
+    overlay.classList.remove("active");
+    document.body.classList.remove("overlay-blur");
+  };
+
+  enterBtn.addEventListener("click", closeOverlay);
+
+  // Small playful delay for "Maybe later"
+  laterBtn.addEventListener("click", () => setTimeout(closeOverlay, 900));
+
+  // Auto-hide after 8 seconds (optional)
+  setTimeout(() => {
+    if (overlay.classList.contains("active")) closeOverlay();
+  }, 8000);
+</script>
+
+<!-- ======================= INTRO OVERLAY END ======================= -->
 </body>
 </html>
